@@ -16,6 +16,7 @@ GitHub Rest API를 이용하여 facebook의 react 레포지토리 이슈 목록�
    Layout 컴포넌트에 Header와 children을 렌더링 하도록 작성했습니다.
 
    Header를 필요로 하는 페이지를 Layout으로 감싸서 Header를 공통으로 사용했습니다.
+   
    <br/>
 
 2. IssueList 이슈 목록 페이지
@@ -27,6 +28,7 @@ GitHub Rest API를 이용하여 facebook의 react 레포지토리 이슈 목록�
    다섯번째 셀마다 광고 이미지 출력하는 기능을 위해 Advertise 컴포넌트를 사용했습니다.
 
    사용 데이터: 이슈 번호, 이슈 제목, 작성자, 작성일, 코멘트
+   
    <br/>
 
 3. IssueDetail 이슈 상세 페이지
@@ -36,6 +38,7 @@ GitHub Rest API를 이용하여 facebook의 react 레포지토리 이슈 목록�
    IssueList에서 특정 이슈를 클릭하는 경우 Link state로 이슈 number를 넘겨주는 방법을 사용했습니다.
 
    사용 데이터: 작성자 이미지, 이슈 번호, 이슈 제목, 작성자, 작성일, 코멘트
+   
    <br/>
 
 4. 에러 페이지
@@ -51,11 +54,14 @@ GitHub Rest API를 이용하여 facebook의 react 레포지토리 이슈 목록�
    존재하지 않는 경로로 접근하는 경우 “페이지가 존재하지 않습니다.” 문구와 메인 페이지로 이동할 수 있는 버튼을
 
    보여주는 페이지입니다.
+   
    <br/>
 
 6. Loading 컴포넌트
 
    이슈 목록, 이슈 상세 내용, 무한스크롤 기능 작동시 데이터 로딩 과정에 “데이터를 로딩중입니다” 문구를 보여주는 컴포넌트입니다.
+
+   <br/>
 
 **[custom hooks]**
 
