@@ -6,7 +6,7 @@ import { styled } from 'styled-components';
 
 import Layout from 'components/common/Layout';
 import Loading from 'components/common/Loading';
-import IssueItem from 'components/listItem/IssueItem';
+import IssueInfo from 'components/listItem/IssueInfo';
 
 import ErrorPage from './ErrorPage';
 
@@ -21,25 +21,15 @@ function IssueDetail() {
   return (
     <Layout>
       {issue ? (
-        <IssueDetailWrapper>
-          <DetailTitle>
+        <>
+          <IssueDetailWrapper>
             <div>
               <img src={`${issue.user.avatar_url}`} alt={`${issue.user.login} 이미지`} />
+              <IssueInfo issue={issue} />
             </div>
-            <div>{<IssueItem issue={issue} />}</div>
-          </DetailTitle>
-          <DetailContent>
-            <ReactMarkdown>{issue.body}</ReactMarkdown>
-            <span>ATTN: johnpapa / fillpesilva </span>
-          </DetailContent>
-          <DetailMotivation>
-            <strong>Motivation</strong>
-            <ul>
-              <li>Consistency</li>
-              <li>Debugging</li>
-            </ul>
-          </DetailMotivation>
-        </IssueDetailWrapper>
+          </IssueDetailWrapper>
+          <ReactMarkdown>{issue.body}</ReactMarkdown>
+        </>
       ) : (
         <Loading />
       )}
@@ -50,50 +40,13 @@ function IssueDetail() {
 export default IssueDetail;
 
 const IssueDetailWrapper = styled.div`
-  height: 600px;
-  overflow-y: auto;
-  margin: 20px;
-`;
-
-const DetailTitle = styled.div`
+  margin-bottom: 2rem;
   display: flex;
-  align-items: flex-start;
-  margin-bottom: 20px;
-
-  div:first-child {
-    margin-right: 20px;
-    width: 50px;
-    height: 50px;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-  }
-
-  div:last-child {
-    width: 80%;
-  }
-`;
-
-const DetailContent = styled.div`
-  margin-bottom: 16px;
-  p {
-    width: 445px;
-    margin-bottom: 16px;
-    word-break: break-all;
-    line-height: 1.5;
-  }
-`;
-
-const DetailMotivation = styled.div`
-  ul {
-    margin-top: 10px;
-    padding-left: 30px;
-  }
-  li {
-    list-style: disc;
-    margin-bottom: 10px;
+  align-items: center;
+  & img {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-right: 1rem;
+    border-radius: 50%;
   }
 `;
