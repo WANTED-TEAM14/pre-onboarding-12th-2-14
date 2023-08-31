@@ -1,8 +1,5 @@
 import React from 'react';
 
-// import { useLocation } from 'react-router';
-// import { styled } from 'styled-components';
-
 import Layout from 'components/common/Layout';
 // import Loading from 'components/common/Loading';
 // import IssueItem from 'components/listItem/IssueItem';
