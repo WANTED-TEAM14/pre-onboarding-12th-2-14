@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { useLocation } from 'react-router';
 import { styled } from 'styled-components';
 
@@ -30,7 +31,7 @@ function IssueDetail() {
             <div>{<IssueItem issue={issue} />}</div>
           </DetailTitle>
           <DetailContent>
-            <p>{issue.body}</p>
+            <ReactMarkdown>{issue.body}</ReactMarkdown>
             <span>ATTN: johnpapa / fillpesilva </span>
           </DetailContent>
           <DetailMotivation>
