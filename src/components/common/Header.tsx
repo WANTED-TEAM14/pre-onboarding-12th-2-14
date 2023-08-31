@@ -1,11 +1,16 @@
 import React from 'react';
 
 import { REPO_INFO } from 'constant';
+import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 function Header() {
   const { organization, repository } = REPO_INFO;
-  return <HeaderWrapper>{`${organization} / ${repository}`}</HeaderWrapper>;
+  return (
+    <HeaderWrapper>
+      <Link to='/'>{`${organization} / ${repository}`}</Link>
+    </HeaderWrapper>
+  );
 }
 
 export default Header;
