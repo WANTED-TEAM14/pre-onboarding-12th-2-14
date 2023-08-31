@@ -11,10 +11,20 @@ import useIntersect from 'hooks/useIntersect';
 
 import ErrorPage from './ErrorPage';
 
+const TARGET_IDX = 4;
+
 function IssueList() {
   const [page, setPage] = useState<number>(1);
   const { issueList, loading, isShowError } = useFetch({ currentNum: page });
   const { targetRef } = useIntersect({ loading, setPage });
+
+  const isAdvertisementCell = (idx: number) => {
+    return (idx + 1) % TARGET_IDX === 0;
+  };
+
+  const checkIsLastIssue = (idx: number) => {
+    return idx === issueList.length - 1;
+  };
 
   if (isShowError) {
     return <ErrorPage />;
@@ -28,15 +38,13 @@ function IssueList() {
     <Layout>
       <IssueListWrapper>
         {issueList.map((issue, idx) => {
-          const repeatAdvertisement = (idx + 1) % 4 === 0;
           return (
-            <React.Fragment key={issue.number}>
+            <li key={issue.number} ref={checkIsLastIssue(idx) ? targetRef : null}>
               <IssueItem {...issue} />
-              {repeatAdvertisement && <Advertisement />}
-            </React.Fragment>
+              {isAdvertisementCell(idx) && <Advertisement />}
+            </li>
           );
         })}
-        <div ref={targetRef}></div>
         {loading && <Loading />}
       </IssueListWrapper>
     </Layout>

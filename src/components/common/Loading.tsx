@@ -11,6 +11,6 @@ export default Loading;
 const LoadingWrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 10px;
   font-weight: bold;
 `;

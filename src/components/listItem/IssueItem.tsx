@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import { Link, useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
@@ -21,9 +21,9 @@ function IssueItem({ number, title, created_at, comments, user }: IssueType) {
   );
 }
 
-export default IssueItem;
+export default memo(IssueItem);
 
-const IssueItemWrapper = styled.li<{ $pathname: string }>`
+const IssueItemWrapper = styled.div<{ $pathname: string }>`
   border-bottom: 1px solid black;
   padding-bottom: 10px;
   margin-bottom: 10px;

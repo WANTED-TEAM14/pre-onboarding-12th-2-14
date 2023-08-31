@@ -6,30 +6,36 @@ interface IntersectPropsType {
 }
 
 function useIntersect({ loading, setPage }: IntersectPropsType) {
-  const targetRef = useRef<HTMLDivElement>(null);
+  const targetRef = useRef<HTMLLIElement | null>(null);
 
   const loadMore = useCallback(() => {
     setPage(prev => prev + 1);
   }, [setPage]);
 
+  const onIntersect = useCallback(
+    (entry: IntersectionObserverEntry) => {
+      if (entry.isIntersecting && targetRef.current) {
+        targetRef.current = null;
+        loadMore();
+      }
+    },
+    [loadMore],
+  );
+
   useEffect(() => {
     if (!targetRef.current) return;
-    let observer: IntersectionObserver;
-    if (loading) {
-      observer = new IntersectionObserver(
-        entries => {
-          if (entries[0].isIntersecting) {
-            loadMore();
-          }
-        },
-        { threshold: 1 },
-      );
 
-      if (targetRef.current) observer.observe(targetRef.current);
-    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        onIntersect(entry);
+      },
+      { threshold: 0.5 },
+    );
+
+    if (targetRef.current) observer.observe(targetRef.current);
 
     return () => observer && observer.disconnect();
-  }, [loadMore, loading]);
+  }, [loading, onIntersect]);
 
   return { targetRef };
 }
