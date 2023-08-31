@@ -17,7 +17,7 @@ export const getIssues = async (page: number) => {
       sort: 'comments',
       state: 'open',
       page: page,
-      per_page: 10,
+      per_page: 30,
     });
 
     return issueList.data;
