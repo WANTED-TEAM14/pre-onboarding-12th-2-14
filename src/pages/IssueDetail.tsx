@@ -35,8 +35,8 @@ export default IssueDetail;
 
 const IssueDetailWrapper = styled.div`
   height: 600px;
-  width: 500px;
-  padding: 0% 2rem;
+  width: 470px;
+  padding: 0 1rem;
   overflow-y: auto;
   overflow-x: hidden;
   margin: 20px;

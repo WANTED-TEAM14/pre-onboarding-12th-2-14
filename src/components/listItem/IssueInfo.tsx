@@ -34,8 +34,7 @@ const IssueInfoStyle = styled.div<{ $pathname: string }>`
   margin-bottom: 10px;
   position: relative;
   font-size: ${({ $pathname }) => ($pathname !== '/' ? '0.9rem' : '1rem')};
-  width: 450px;
-
+  width: ${({ $pathname }) => ($pathname !== '/' ? '450px' : '')};
   & .title {
     display: inline-block;
     margin-bottom: 4px;
@@ -58,7 +57,7 @@ const IssueInfoStyle = styled.div<{ $pathname: string }>`
       text-overflow: unset;
       white-space: unset;
     }
-    color: #487eb0;
+    color: ${({ $pathname }) => ($pathname !== '/' ? 'black' : '#487eb0')};
     transition: color 0.3s ease-in-out;
   }
 `;

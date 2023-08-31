@@ -24,9 +24,4 @@ export default IssueItem;
 
 const IssueItemWrapper = styled.li<{ $pathname: string }>`
   list-style: none;
-  padding-bottom: 1rem 0;
-  & a {
-    color: black;
-    text-decoration: none;
-  }
 `;
