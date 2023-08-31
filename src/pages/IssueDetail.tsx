@@ -20,15 +20,15 @@ function IssueDetail() {
   return (
     <>
       {issue ? (
-        <>
-          <IssueDetailWrapper>
-            <div>
-              <img src={`${issue.user.avatar_url}`} alt={`${issue.user.login} 이미지`} />
-              <IssueInfo issue={issue} />
-            </div>
-          </IssueDetailWrapper>
-          <ReactMarkdown>{issue.body}</ReactMarkdown>
-        </>
+        <IssueDetailWrapper>
+          <IssueDetailHeader>
+            <img src={`${issue.user.avatar_url}`} alt={`${issue.user.login} 이미지`} />
+            <IssueInfo issue={issue} />
+          </IssueDetailHeader>
+          <IssueDetailBody>
+            <ReactMarkdown>{issue.body}</ReactMarkdown>
+          </IssueDetailBody>
+        </IssueDetailWrapper>
       ) : (
         <Loading />
       )}
@@ -39,13 +39,28 @@ function IssueDetail() {
 export default IssueDetail;
 
 const IssueDetailWrapper = styled.div`
-  margin-bottom: 2rem;
+  height: 600px;
+  width: 500px;
+  padding: 0% 2rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin: 20px;
+`;
+
+const IssueDetailHeader = styled.div`
+  margin-bottom: 20px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+
   & img {
     width: 2.5rem;
     height: 2.5rem;
     margin-right: 1rem;
     border-radius: 50%;
   }
+`;
+
+const IssueDetailBody = styled.div`
+  margin-bottom: 16px;
+  word-break: break-all;
 `;
