@@ -7,7 +7,7 @@ export const REPO_INFO = {
 
 const TOKEN = process.env.REACT_APP_TOKEN;
 
-const octokit = new Octokit({ auth: TOKEN });
+const octokit = new Octokit({ TOKEN });
 
 const { organization, repository } = REPO_INFO;
 
