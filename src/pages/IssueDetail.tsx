@@ -1,97 +1,43 @@
 import React from 'react';
 
-import Layout from 'components/common/Layout';
-// import Loading from 'components/common/Loading';
-// import IssueItem from 'components/listItem/IssueItem';
-// import useFetch from 'hooks/useFetch';
+import { useLocation } from 'react-router';
+import { styled } from 'styled-components';
 
-// import ErrorPage from './ErrorPage';
+import Loading from 'components/common/Loading';
+import IssueDetailBody from 'components/IssueDetail/IssueDetailBody';
+import IssueDetailHeader from 'components/IssueDetail/IssueDetailHeader';
+
+import ErrorPage from './ErrorPage';
 
 function IssueDetail() {
-  // const location = useLocation();
-  // const number = location.state.number;
-  // const { selectedIssue: issue, isShowError } = useFetch({ currentNum: number });
+  const location = useLocation();
+  const issue = location.state.issue;
 
-  // if (isShowError) {
-  //   return <ErrorPage />;
-  // }
+  if (!issue) {
+    return <ErrorPage />;
+  }
 
   return (
-    <Layout>
-      {/* {issue ? (
+    <>
+      {issue ? (
         <IssueDetailWrapper>
-          <DetailTitle>
-            <div>
-              <img src={`${issue.user.avatar_url}`} alt={`${issue.user.login} 이미지`} />
-            </div>
-            <div>{<IssueItem {...issue} />}</div>
-          </DetailTitle>
-          <DetailContent>
-            <p>{issue.body}</p>
-            <span>ATTN: johnpapa / fillpesilva </span>
-          </DetailContent>
-          <DetailMotivation>
-            <strong>Motivation</strong>
-            <ul>
-              <li>Consistency</li>
-              <li>Debugging</li>
-            </ul>
-          </DetailMotivation>
+          <IssueDetailHeader {...issue} />
+          <IssueDetailBody {...issue} />
         </IssueDetailWrapper>
       ) : (
         <Loading />
-      )} */}
-    </Layout>
+      )}
+    </>
   );
 }
 
 export default IssueDetail;
 
-// const IssueDetailWrapper = styled.div`
-//   height: 600px;
-//   overflow-y: auto;
-//   margin: 20px;
-// `;
-
-// const DetailTitle = styled.div`
-//   display: flex;
-//   align-items: flex-start;
-//   margin-bottom: 20px;
-
-//   div:first-child {
-//     margin-right: 20px;
-//     width: 50px;
-//     height: 50px;
-
-//     img {
-//       width: 100%;
-//       height: 100%;
-//       object-fit: contain;
-//     }
-//   }
-
-//   div:last-child {
-//     width: 80%;
-//   }
-// `;
-
-// const DetailContent = styled.div`
-//   margin-bottom: 16px;
-//   p {
-//     width: 445px;
-//     margin-bottom: 16px;
-//     word-break: break-all;
-//     line-height: 1.5;
-//   }
-// `;
-
-// const DetailMotivation = styled.div`
-//   ul {
-//     margin-top: 10px;
-//     padding-left: 30px;
-//   }
-//   li {
-//     list-style: disc;
-//     margin-bottom: 10px;
-//   }
-// `;
+const IssueDetailWrapper = styled.div`
+  height: 600px;
+  width: 470px;
+  padding: 0 1rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin: 20px;
+`;
