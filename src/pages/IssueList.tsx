@@ -28,7 +28,7 @@ function IssueList() {
             const repeatAdvertisement = (idx + 1) % 4 === 0;
             return (
               <React.Fragment key={issue.number}>
-                <IssueItem issue={issue} />
+                <IssueItem {...issue} />
                 {repeatAdvertisement && <Advertisement />}
               </React.Fragment>
             );

@@ -5,21 +5,18 @@ import { styled } from 'styled-components';
 import { IssueType } from 'types';
 import { changeDateFormat } from 'utils/changeDateFormat';
 
-interface IssueItemPropsType {
-  issue: IssueType;
-}
-function IssueItem({ issue }: IssueItemPropsType) {
+function IssueItem({ number, title, created_at, comments, user }: IssueType) {
   const { pathname } = useLocation();
   return (
     <IssueItemWrapper $pathname={pathname}>
-      <Link to={`/detail/${issue.number}`} state={{ number: issue.number }}>
-        &#35;{`${issue.number} ${issue.title}`}
+      <Link to={`/detail/${number}`} state={{ number: number }}>
+        &#35;{`${number} ${title}`}
       </Link>
       <div>
-        <span>작성자: {`${issue.user.login}`}, </span>
-        <span>작성일: {`${changeDateFormat(issue.created_at)}`}</span>
+        <span>작성자: {`${user.login}`}, </span>
+        <span>작성일: {`${changeDateFormat(created_at)}`}</span>
       </div>
-      <span className='comment'>코멘트: {`${issue.comments}`}</span>
+      <span className='comment'>코멘트: {`${comments}`}</span>
     </IssueItemWrapper>
   );
 }
