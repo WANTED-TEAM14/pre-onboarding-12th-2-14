@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { changeDateFormat } from 'utils/changeDateFormat';
 
@@ -11,32 +12,45 @@ function IssueInfo({ issue }: IssueItemPropsType) {
     comments,
     user: { login },
   } = issue;
+  const { pathname } = useLocation();
 
   return (
-    <IssueInfoStyle>
+    <IssueInfoStyle $pathname={pathname}>
       <div className='meta'>
-        <h2>
-          &#35;{number} {title}
-        </h2>
-        <span>
-          작성자: {login}, 작성일: {changeDateFormat(created_at)}
-        </span>
+        &#35;{number} {title}
       </div>
-      <div className='comments'>코멘트: {comments}</div>
+      <div>
+        <span>작성자: {login},</span>
+        <span>작성일: {changeDateFormat(created_at)}</span>
+      </div>
+      <div className='comment'>코멘트: {comments}</div>
     </IssueInfoStyle>
   );
 }
 
-const IssueInfoStyle = styled.div`
-  width: 100%;
+const IssueInfoStyle = styled.div<{ $pathname: string }>`
   border-bottom: 1px solid gray;
-  padding-bottom: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  position: relative;
+  font-size: ${({ $pathname }) => ($pathname !== '/' ? '0.9rem' : '1rem')};
+  width: 450px;
 
   & .meta {
-    width: 85%;
+    display: inline-block;
+    margin-bottom: 4px;
+    font-weight: bold;
+    width: ${({ $pathname }) => ($pathname !== '/' ? '300px' : '340px')};
+    font-size: ${({ $pathname }) => ($pathname !== '/' ? '1rem' : '1.1rem')};
+    overflow: ${({ $pathname }) => ($pathname !== '/' ? 'unset' : 'hidden')};
+    text-overflow: ${({ $pathname }) => ($pathname !== '/' ? 'unset' : 'ellipsis')};
+    white-space: ${({ $pathname }) => ($pathname !== '/' ? 'unset' : 'nowrap')};
+  }
+
+  .comment {
+    position: absolute;
+    right: 0;
+    top: 16px;
   }
 `;
 
