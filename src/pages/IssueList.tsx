@@ -26,16 +26,12 @@ function IssueList() {
         <IssueListWrapper>
           {issueList.map((issue, idx) => {
             const repeatAdvertisement = (idx + 1) % 4 === 0;
-            if (repeatAdvertisement) {
-              return (
-                <React.Fragment key={`${issue.id + idx}`}>
-                  <IssueItem key={issue.id} issue={issue} />
-                  <Advertisement key={idx + 1} />
-                </React.Fragment>
-              );
-            } else {
-              return <IssueItem key={issue.id} issue={issue} />;
-            }
+            return (
+              <React.Fragment key={`${issue.id + idx}`}>
+                <IssueItem key={issue.id} issue={issue} />
+                {repeatAdvertisement && <Advertisement key={idx + 1} />}
+              </React.Fragment>
+            );
           })}
           <div ref={targetRef}></div>
           {loading && <Loading />}
