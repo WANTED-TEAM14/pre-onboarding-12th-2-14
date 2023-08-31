@@ -16,7 +16,7 @@ function IssueInfo({ issue }: IssueItemPropsType) {
 
   return (
     <IssueInfoStyle $pathname={pathname}>
-      <div className='meta'>
+      <div className='title'>
         &#35;{number} {title}
       </div>
       <div>
@@ -36,7 +36,7 @@ const IssueInfoStyle = styled.div<{ $pathname: string }>`
   font-size: ${({ $pathname }) => ($pathname !== '/' ? '0.9rem' : '1rem')};
   width: 450px;
 
-  & .meta {
+  & .title {
     display: inline-block;
     margin-bottom: 4px;
     font-weight: bold;
@@ -51,6 +51,15 @@ const IssueInfoStyle = styled.div<{ $pathname: string }>`
     position: absolute;
     right: 0;
     top: 16px;
+  }
+
+  &:hover {
+    .title {
+      text-overflow: unset;
+      white-space: unset;
+    }
+    color: #487eb0;
+    transition: color 0.3s ease-in-out;
   }
 `;
 
