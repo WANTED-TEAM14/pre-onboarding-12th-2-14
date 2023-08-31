@@ -15,7 +15,7 @@ function Advertisement() {
 
 export default Advertisement;
 
-const AdsWrapper = styled.li`
+const AdsWrapper = styled.div`
   height: 57px;
   margin-bottom: 10px;
 

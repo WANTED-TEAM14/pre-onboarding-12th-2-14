@@ -13,14 +13,15 @@ function useFetch({ currentNum }: { currentNum: number }) {
   useEffect(() => {
     const fetchIssues = async () => {
       try {
-        const data = await getIssues(currentNum);
-
         setLoading(true);
+        const data = await getIssues(currentNum);
         setIssueList(prev => {
           return [...prev, ...data];
         });
       } catch (e) {
         setIsShowError(true);
+      } finally {
+        setLoading(false);
       }
     };
     fetchIssues();

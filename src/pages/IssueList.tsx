@@ -29,14 +29,14 @@ function IssueList() {
       <IssueListWrapper>
         {issueList.map((issue, idx) => {
           const repeatAdvertisement = (idx + 1) % 4 === 0;
+          const isLastIssue = idx === issueList.length - 1;
           return (
-            <React.Fragment key={issue.number}>
+            <li key={issue.number} ref={isLastIssue ? targetRef : null}>
               <IssueItem {...issue} />
               {repeatAdvertisement && <Advertisement />}
-            </React.Fragment>
+            </li>
           );
         })}
-        <div ref={targetRef}></div>
         {loading && <Loading />}
       </IssueListWrapper>
     </Layout>
