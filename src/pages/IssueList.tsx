@@ -15,6 +15,7 @@ function IssueList() {
   const [page, setPage] = useState<number>(1);
   const { issueList, loading, isShowError } = useFetch({ currentNum: page });
   const { targetRef } = useIntersect({ loading, setPage });
+  console.log(issueList);
 
   if (isShowError) {
     return <ErrorPage />;
