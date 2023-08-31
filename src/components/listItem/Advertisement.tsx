@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
@@ -13,9 +13,9 @@ function Advertisement() {
   );
 }
 
-export default Advertisement;
+export default memo(Advertisement);
 
-const AdsWrapper = styled.li`
+const AdsWrapper = styled.div`
   height: 57px;
   margin-bottom: 10px;
 

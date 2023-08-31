@@ -10,37 +10,42 @@ import useIntersect from 'hooks/useIntersect';
 
 import ErrorPage from './ErrorPage';
 
+const TARGET_IDX = 4;
+
 function IssueList() {
   const [page, setPage] = useState<number>(1);
   const { issueList, loading, isShowError } = useFetch({ currentNum: page });
   const { targetRef } = useIntersect({ loading, setPage });
 
+  const isAdvertisementCell = (idx: number) => {
+    return (idx + 1) % TARGET_IDX === 0;
+  };
+
+  const checkIsLastIssue = (idx: number) => {
+    return idx === issueList.length - 1;
+  };
+
   if (isShowError) {
     return <ErrorPage />;
   }
 
+  if (issueList.length === 0) {
+    return <Loading />;
+  }
+
   return (
     <>
-      {issueList.length !== 0 ? (
-        <IssueListWrapper>
-          {issueList.map((issue, idx) => {
-            if ((idx + 1) % 4 === 0) {
-              return (
-                <React.Fragment key={`${issue.id + idx}`}>
-                  <IssueItem key={issue.id} issue={issue} />
-                  <Advertisement key={idx + 1} />
-                </React.Fragment>
-              );
-            } else {
-              return <IssueItem key={issue.id} issue={issue} />;
-            }
-          })}
-          <div ref={targetRef}></div>
-          {loading && <Loading />}
-        </IssueListWrapper>
-      ) : (
-        <Loading />
-      )}
+      <IssueListWrapper>
+        {issueList.map((issue, idx) => {
+          return (
+            <li key={issue.number} ref={checkIsLastIssue(idx) ? targetRef : null}>
+              <IssueItem {...issue} />
+              {isAdvertisementCell(idx) && <Advertisement />}
+            </li>
+          );
+        })}
+        {loading && <Loading />}
+      </IssueListWrapper>
     </>
   );
 }

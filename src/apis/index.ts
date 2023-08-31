@@ -1,27 +1,28 @@
-import axios from 'axios';
-import { REPO_INFO, TOKEN } from 'constant';
+import { Octokit } from '@octokit/rest';
+
+export const REPO_INFO = {
+  organization: 'facebook',
+  repository: 'react',
+};
+
+const TOKEN = process.env.REACT_APP_TOKEN;
+
+const octokit = new Octokit({ TOKEN });
 
 const { organization, repository } = REPO_INFO;
 
-const BASE_URL = `https://api.github.com/repos/${organization}/${repository}/issues`;
-
-const axiosIstance = axios.create({
-  baseURL: BASE_URL,
-});
-
-axiosIstance.interceptors.request.use(config => {
-  config.headers.Authorization = `Bearer ${TOKEN}`;
-  return config;
-});
-
 export const getIssues = async (page: number) => {
-  const data = await axiosIstance.get(
-    `${BASE_URL}?state=open&sort=comments&direction=desc&page=${page}&per_page=10`,
-  );
-  return data.data;
-};
+  try {
+    const issueList = await octokit.request(`GET /repos/${organization}/${repository}/issues`, {
+      sort: 'comments',
+      state: 'open',
+      page: page,
+      per_page: 30,
+    });
 
-export const getIssueDetail = async (issueNumber: number) => {
-  const data = await axiosIstance(`${BASE_URL}/${issueNumber}`);
-  return data.data;
+    return issueList.data;
+  } catch (error) {
+    console.error('Error:', error);
+    throw error;
+  }
 };

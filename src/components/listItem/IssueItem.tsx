@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import { Link, useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
@@ -6,10 +6,7 @@ import { IssueType } from 'types';
 
 import IssueInfo from './IssueInfo';
 
-export interface IssueItemPropsType {
-  issue: IssueType;
-}
-function IssueItem({ issue }: IssueItemPropsType) {
+function IssueItem({ ...issue }: IssueType) {
   const { pathname } = useLocation();
   return (
     <IssueItemWrapper $pathname={pathname}>
@@ -20,7 +17,7 @@ function IssueItem({ issue }: IssueItemPropsType) {
   );
 }
 
-export default IssueItem;
+export default memo(IssueItem);
 
 const IssueItemWrapper = styled.li<{ $pathname: string }>`
   list-style: none;
