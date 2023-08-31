@@ -30,16 +30,3 @@ function useFetch({ currentNum }: { currentNum: number }) {
 }
 
 export default useFetch;
-
-// const fetchIssues = useCallback(async () => {
-//   try {
-//     const data = await getIssues(currentNum);
-
-//     setLoading(true);
-//     setIssueList(prev => {
-//       return [...prev, ...data];
-//     });
-//   } catch (e) {
-//     setIsShowError(true);
-//   }
-// }, [currentNum]);
