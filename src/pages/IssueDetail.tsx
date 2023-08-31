@@ -27,7 +27,7 @@ function IssueDetail() {
             <div>
               <img src={`${issue.user.avatar_url}`} alt={`${issue.user.login} 이미지`} />
             </div>
-            <div>{<IssueItem issue={issue} />}</div>
+            <div>{<IssueItem {...issue} />}</div>
           </DetailTitle>
           <DetailContent>
             <p>{issue.body}</p>
