@@ -21,8 +21,8 @@ function IssueDetail() {
     <>
       {issue ? (
         <IssueDetailWrapper>
-          <IssueDetailHeader issue={issue} />
-          <IssueDetailBody issue={issue} />
+          <IssueDetailHeader {...issue} />
+          <IssueDetailBody {...issue} />
         </IssueDetailWrapper>
       ) : (
         <Loading />

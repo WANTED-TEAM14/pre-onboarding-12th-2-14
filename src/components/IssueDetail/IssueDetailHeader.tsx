@@ -1,13 +1,13 @@
 import { styled } from 'styled-components';
+import { IssueType } from 'types';
 
 import IssueInfo from 'components/listItem/IssueInfo';
-import { IssueItemPropsType } from 'components/listItem/IssueItem';
 
-function IssueDetailHeader({ issue }: IssueItemPropsType) {
+function IssueDetailHeader({ ...issue }: IssueType) {
   return (
     <IssueDetailHeaderWrapper>
       <img src={`${issue.user.avatar_url}`} alt={`${issue.user.login} 이미지`} />
-      <IssueInfo issue={issue} />
+      <IssueInfo {...issue} />
     </IssueDetailHeaderWrapper>
   );
 }

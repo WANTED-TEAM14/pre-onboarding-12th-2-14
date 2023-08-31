@@ -1,21 +1,13 @@
 import { useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
+import { IssueType } from 'types';
 import { changeDateFormat } from 'utils/changeDateFormat';
 
-import { IssueItemPropsType } from './IssueItem';
-
-function IssueInfo({ issue }: IssueItemPropsType) {
-  const {
-    number,
-    title,
-    created_at,
-    comments,
-    user: { login },
-  } = issue;
+function IssueInfo({ number, title, created_at, comments, user: { login } }: IssueType) {
   const { pathname } = useLocation();
 
   return (
-    <IssueInfoStyle $pathname={pathname}>
+    <IssueInfoWrapper $pathname={pathname}>
       <div className='title'>
         &#35;{number} {title}
       </div>
@@ -24,11 +16,11 @@ function IssueInfo({ issue }: IssueItemPropsType) {
         <span>작성일: {changeDateFormat(created_at)}</span>
       </div>
       <div className='comment'>코멘트: {comments}</div>
-    </IssueInfoStyle>
+    </IssueInfoWrapper>
   );
 }
 
-const IssueInfoStyle = styled.div<{ $pathname: string }>`
+const IssueInfoWrapper = styled.div<{ $pathname: string }>`
   border-bottom: 1px solid gray;
   padding-bottom: 10px;
   margin-bottom: 10px;

@@ -1,13 +1,8 @@
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { styled } from 'styled-components';
+import { IssueType } from 'types';
 
-import { IssueItemPropsType } from 'components/listItem/IssueItem';
-
-/* interface IssueBody {
-  issueBody: string;
-}
- */
-function IssueDetailBody({ issue }: IssueItemPropsType) {
+function IssueDetailBody({ ...issue }: IssueType) {
   return (
     <IssueDetailBodyWrapper>
       <ReactMarkdown>{issue.body}</ReactMarkdown>

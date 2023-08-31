@@ -1,17 +1,16 @@
 import React, { memo } from 'react';
 
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { IssueType } from 'types';
 
 import IssueInfo from './IssueInfo';
 
 function IssueItem({ ...issue }: IssueType) {
-  const { pathname } = useLocation();
   return (
-    <IssueItemWrapper $pathname={pathname}>
+    <IssueItemWrapper>
       <Link to={`/detail/${issue.number}`} state={{ issue }}>
-        <IssueInfo issue={issue} />
+        <IssueInfo {...issue} />
       </Link>
     </IssueItemWrapper>
   );
@@ -19,6 +18,6 @@ function IssueItem({ ...issue }: IssueType) {
 
 export default memo(IssueItem);
 
-const IssueItemWrapper = styled.li<{ $pathname: string }>`
+const IssueItemWrapper = styled.div`
   list-style: none;
 `;
