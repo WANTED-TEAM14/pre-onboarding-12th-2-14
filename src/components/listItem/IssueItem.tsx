@@ -12,7 +12,7 @@ function IssueItem({ issue }: IssueItemPropsType) {
   const { pathname } = useLocation();
   return (
     <IssueItemWrapper $pathname={pathname}>
-      <Link to={`/detail/${issue.number}`} state={{ number: issue.number }}>
+      <Link to={`/detail/${issue.number}`} state={{ issue }}>
         &#35;{`${issue.number} ${issue.title}`}
       </Link>
       <div>

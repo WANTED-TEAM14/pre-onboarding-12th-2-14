@@ -7,16 +7,14 @@ import { styled } from 'styled-components';
 import Layout from 'components/common/Layout';
 import Loading from 'components/common/Loading';
 import IssueItem from 'components/listItem/IssueItem';
-import useFetch from 'hooks/useFetch';
 
 import ErrorPage from './ErrorPage';
 
 function IssueDetail() {
   const location = useLocation();
-  const number = location.state.number;
-  const { selectedIssue: issue, isShowError } = useFetch({ currentNum: number });
+  const issue = location.state.issue;
 
-  if (isShowError) {
+  if (!issue) {
     return <ErrorPage />;
   }
 
