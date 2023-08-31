@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import styled from 'styled-components';
 
-import Layout from 'components/common/Layout';
 import Loading from 'components/common/Loading';
 import Advertisement from 'components/listItem/Advertisement';
 import IssueItem from 'components/listItem/IssueItem';
@@ -21,7 +20,7 @@ function IssueList() {
   }
 
   return (
-    <Layout>
+    <>
       {issueList.length !== 0 ? (
         <IssueListWrapper>
           {issueList.map((issue, idx) => {
@@ -42,7 +41,7 @@ function IssueList() {
       ) : (
         <Loading />
       )}
-    </Layout>
+    </>
   );
 }
 

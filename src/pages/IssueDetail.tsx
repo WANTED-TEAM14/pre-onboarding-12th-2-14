@@ -4,7 +4,6 @@ import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { useLocation } from 'react-router';
 import { styled } from 'styled-components';
 
-import Layout from 'components/common/Layout';
 import Loading from 'components/common/Loading';
 import IssueInfo from 'components/listItem/IssueInfo';
 
@@ -19,7 +18,7 @@ function IssueDetail() {
   }
 
   return (
-    <Layout>
+    <>
       {issue ? (
         <>
           <IssueDetailWrapper>
@@ -33,7 +32,7 @@ function IssueDetail() {
       ) : (
         <Loading />
       )}
-    </Layout>
+    </>
   );
 }
 
