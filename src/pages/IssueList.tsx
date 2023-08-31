@@ -20,25 +20,25 @@ function IssueList() {
     return <ErrorPage />;
   }
 
+  if (issueList.length === 0) {
+    return <Loading />;
+  }
+
   return (
     <Layout>
-      {issueList.length !== 0 ? (
-        <IssueListWrapper>
-          {issueList.map((issue, idx) => {
-            const repeatAdvertisement = (idx + 1) % 4 === 0;
-            return (
-              <React.Fragment key={issue.number}>
-                <IssueItem {...issue} />
-                {repeatAdvertisement && <Advertisement />}
-              </React.Fragment>
-            );
-          })}
-          <div ref={targetRef}></div>
-          {loading && <Loading />}
-        </IssueListWrapper>
-      ) : (
-        <Loading />
-      )}
+      <IssueListWrapper>
+        {issueList.map((issue, idx) => {
+          const repeatAdvertisement = (idx + 1) % 4 === 0;
+          return (
+            <React.Fragment key={issue.number}>
+              <IssueItem {...issue} />
+              {repeatAdvertisement && <Advertisement />}
+            </React.Fragment>
+          );
+        })}
+        <div ref={targetRef}></div>
+        {loading && <Loading />}
+      </IssueListWrapper>
     </Layout>
   );
 }
