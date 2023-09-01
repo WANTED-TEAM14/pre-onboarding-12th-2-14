@@ -38,7 +38,7 @@ function useFetch({ currentNum }: { currentNum: number }) {
       const { status } = error as OctokitError;
       setErrorMessage(
         {
-          404: '찾고자하는 데이터가 없습니다.',
+          404: '잘못된 경로의 요청입니다',
           403: 'API 요청 제한 횟수 초과로 인해 요청이 제한되었습니다.',
           422: '인증이 실패했거나 너무 많은 요청 시도가 있습니다.',
         }[status],
