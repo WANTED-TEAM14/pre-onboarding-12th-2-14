@@ -6,7 +6,9 @@ import { IssueType } from 'types';
 
 import IssueInfo from './IssueInfo';
 
-function IssueItem({ ...issue }: IssueType) {
+type Props = IssueType & { errorMessage: string };
+
+function IssueItem({ errorMessage, ...issue }: Props) {
   return (
     <IssueItemWrapper>
       <Link to={`/detail/${issue.number}`} state={{ issue }}>

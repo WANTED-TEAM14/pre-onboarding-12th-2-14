@@ -11,10 +11,10 @@ import ErrorPage from './ErrorPage';
 
 function IssueDetail() {
   const location = useLocation();
-  const issue = location.state.issue;
+  const { issue, errorMessage } = location.state;
 
-  if (!issue) {
-    return <ErrorPage />;
+  if (errorMessage) {
+    return <ErrorPage error={errorMessage} />;
   }
 
   return (

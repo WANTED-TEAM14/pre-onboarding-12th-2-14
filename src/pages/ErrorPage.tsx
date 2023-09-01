@@ -2,10 +2,14 @@ import React from 'react';
 
 import { styled } from 'styled-components';
 
-function ErrorPage() {
+type Props = {
+  error: string;
+};
+
+function ErrorPage({ error }: Props) {
   return (
     <ErrorWrapper>
-      <p>데이터를 불러오는데 실패했습니다. 새로고침 후 이용해주세요.</p>
+      <p>{error}</p>
     </ErrorWrapper>
   );
 }
