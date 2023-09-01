@@ -14,7 +14,7 @@ const TARGET_IDX = 4;
 
 function IssueList() {
   const [page, setPage] = useState<number>(1);
-  const { issueList, loading, isShowError, errorMessage } = useFetch({ currentNum: page });
+  const { issueList, loading, errorMessage } = useFetch({ currentNum: page });
   const { targetRef } = useIntersect({ loading, setPage });
 
   const isAdvertisementCell = (idx: number) => {
@@ -25,7 +25,7 @@ function IssueList() {
     return idx === issueList.length - 1;
   };
 
-  if (isShowError) {
+  if (errorMessage) {
     return <ErrorPage error={errorMessage} />;
   }
 

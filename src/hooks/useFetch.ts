@@ -11,7 +11,6 @@ type OctokitError = {
 function useFetch({ currentNum }: { currentNum: number }) {
   const { pathname } = useLocation();
   const [issueList, setIssueList] = useState<IssueType[]>([]);
-  const [isShowError, setIsShowError] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -24,7 +23,6 @@ function useFetch({ currentNum }: { currentNum: number }) {
           return [...prev, ...data];
         });
       } catch (e) {
-        setIsShowError(true);
         handleError(e);
       } finally {
         setLoading(false);
@@ -46,7 +44,7 @@ function useFetch({ currentNum }: { currentNum: number }) {
     } else setErrorMessage('Unknown Network Error');
   };
 
-  return { issueList, loading, isShowError, errorMessage };
+  return { issueList, loading, errorMessage };
 }
 
 export default useFetch;

@@ -13,7 +13,7 @@ function IssueDetail() {
   const location = useLocation();
   const { issue, errorMessage } = location.state;
 
-  if (!issue) {
+  if (errorMessage) {
     return <ErrorPage error={errorMessage} />;
   }
 
