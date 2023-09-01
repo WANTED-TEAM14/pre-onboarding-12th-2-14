@@ -8,7 +8,7 @@ type OctokitError = {
   status: 403 | 404 | 422;
 };
 
-function useFetch({ currentNum }: { currentNum: number }) {
+function useFetch(page: number) {
   const { pathname } = useLocation();
   const [issueList, setIssueList] = useState<IssueType[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -18,7 +18,7 @@ function useFetch({ currentNum }: { currentNum: number }) {
     const fetchIssues = async () => {
       try {
         setLoading(true);
-        const data = await getIssues(currentNum);
+        const data = await getIssues(page);
         setIssueList(prev => {
           return [...prev, ...data];
         });
@@ -29,7 +29,7 @@ function useFetch({ currentNum }: { currentNum: number }) {
       }
     };
     fetchIssues();
-  }, [currentNum, pathname]);
+  }, [page, pathname]);
 
   const handleError = (error: unknown) => {
     if (error && typeof error === 'object' && 'status' in error) {
