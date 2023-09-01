@@ -14,7 +14,7 @@ const TARGET_IDX = 4;
 
 function IssueList() {
   const [page, setPage] = useState<number>(1);
-  const { issueList, loading, isShowError } = useFetch({ currentNum: page });
+  const { issueList, loading, isShowError, errorMessage } = useFetch({ currentNum: page });
   const { targetRef } = useIntersect({ loading, setPage });
 
   const isAdvertisementCell = (idx: number) => {
@@ -26,7 +26,7 @@ function IssueList() {
   };
 
   if (isShowError) {
-    return <ErrorPage />;
+    return <ErrorPage error={errorMessage} />;
   }
 
   if (issueList.length === 0) {
@@ -39,7 +39,7 @@ function IssueList() {
         {issueList.map((issue, idx) => {
           return (
             <li key={issue.number} ref={checkIsLastIssue(idx) ? targetRef : null}>
-              <IssueItem {...issue} />
+              <IssueItem {...issue} errorMessage={errorMessage} />
               {isAdvertisementCell(idx) && <Advertisement />}
             </li>
           );
