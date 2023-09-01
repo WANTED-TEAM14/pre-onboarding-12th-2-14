@@ -8,7 +8,7 @@ type OctokitError = {
   status: 403 | 404 | 422;
 };
 
-function useFetch({ page }: { page: number }) {
+function useFetch(page: number) {
   const { pathname } = useLocation();
   const [issueList, setIssueList] = useState<IssueType[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
